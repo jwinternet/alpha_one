@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sites</title>
+</head>
+<body>
+    {% extends "site_surveys/base.html" %}
+
+    {% block page_header %}
+        <h1>Sites</h1>
+    {% endblock page_header %}
+
+    {% block content %}
+
+        <ul class="list-group border-bottom pb-2 mb-4">
+            {% for site in sites %}
+                <li class="list-group-item border-0">
+                    <a href="{% url 'site_surveys:site' site.id %}">{{ site.text }}</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item border-0">No sites have been added yet.</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'site_surveys:new_site' %}">Add A New Site</a>
+
+    {% endblock content %}
+</body>
+</html>

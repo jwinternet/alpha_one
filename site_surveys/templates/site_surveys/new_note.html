@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Note</title>
+</head>
+<body>
+    {% extends "site_surveys/base.html" %}
+
+    {% block content %}
+
+        <p><a href="{% url 'site_surveys:site' site.id %}">{{ site }}</a></p>
+
+        <p>Add A New Note:</p>
+        <form action="{% url 'site_surveys:new_note' site.id %}" method='post'>
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button name='submit'>Add Note</button>
+        </form>
+
+    {% endblock content %}
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Site</title>
+</head>
+<body>
+    {% extends "site_surveys/base.html" %}
+
+    {% block content %}
+        <p>Add A New Site:</p>
+
+        <form action="{% url 'site_surveys:new_site' %}" method='post'>
+            {% csrf_token %}
+            {{ form.as_div }}
+            <button name="submit">Add Site</button>
+        </form>
+
+    {% endblock content %}
+</body>
+</html>

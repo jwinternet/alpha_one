@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Site</title>
+</head>
+<body>
+    {% extends "site_surveys/base.html" %}
+
+    {% block content %}
+
+        {% block page_header %}
+            <h1>{{ site.text }}</h1>
+        {% endblock page_header %}
+
+        <p>Notes:</p>
+        <p>
+            <a href="{% url 'site_surveys:new_note' site.id %}">Add New Note</a>
+        </p>
+
+        {% for note in notes %}
+            <div class="card mb-3">
+                <!-- Card header with timestamp and edit link -->
+                <h4 class="card-header">
+                    {{ note.date_added|date:'M d, Y H:i' }}
+                    <small><a href="{% url 'site_surveys:edit_note' note.id %}">Edit Note</a></small>
+                </h4>
+                <!-- Card body with entry text -->
+                <div class="card-body">{{ note.text|linebreaks }}</div>
+            </div>
+        {% empty %}
+            <p>There are no notes for this site yet.</p>
+        {% endfor %}
+
+    {% endblock content %}
+</body>
+</html>
