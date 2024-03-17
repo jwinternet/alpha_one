@@ -7,13 +7,12 @@
 <body>
     {% extends "site_surveys/base.html" %}
 
+    {% block page_header %}
+        <h1>{{ site.text }}</h1>
+    {% endblock page_header %}
+
     {% block content %}
 
-        {% block page_header %}
-            <h1>{{ site.text }}</h1>
-        {% endblock page_header %}
-
-        <p>Notes:</p>
         <p>
             <a href="{% url 'site_surveys:new_note' site.id %}">Add New Note</a>
         </p>
@@ -22,6 +21,7 @@
             <div class="card mb-3">
                 <!-- Card header with timestamp and edit link -->
                 <h4 class="card-header">
+                    {{ note.title }}
                     {{ note.date_added|date:'M d, Y H:i' }}
                     <small><a href="{% url 'site_surveys:edit_note' note.id %}">Edit Note</a></small>
                 </h4>
